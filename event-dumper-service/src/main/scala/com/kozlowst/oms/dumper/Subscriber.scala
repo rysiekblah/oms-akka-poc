@@ -2,7 +2,7 @@ package com.kozlowst.oms.dumper
 
 import akka.actor.{Actor, ActorLogging}
 import akka.cluster.pubsub.{DistributedPubSub, DistributedPubSubMediator}
-import com.kozlowst.oms.order.common.{CommonConfig, Order}
+import com.kozlowst.oms.common.{CommonConfig, Order}
 
 /**
   * Created by tomek on 4/8/17.

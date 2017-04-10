@@ -2,7 +2,7 @@ package com.kozlowst.oms.dumper
 
 import akka.actor.{ActorSystem, Address, Props}
 import akka.cluster.Cluster
-import com.kozlowst.oms.order.common.CommonConfig
+import com.kozlowst.oms.common.CommonConfig
 
 /**
   * Created by tomek on 4/7/17.

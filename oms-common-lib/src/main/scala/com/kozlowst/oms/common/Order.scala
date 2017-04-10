@@ -11,7 +11,7 @@ import org.joda.time.format.DateTimeFormat
   */
 
 case class Order (
-                orderId: Long,
+                orderId: Option[Long],
                 accountName: String,
                 cumQty: Long, // Cumulative quantity filled
                 comment: String, // User generated comment
@@ -21,37 +21,23 @@ case class Order (
                 instrumentId: Long,
                 leavesQty: Double, // Quantity remaining to be filled.
                 orderQty: Long, //	Number of shares
-                orderType: OrderType,
-                side: Side,
-                orderStatus: OrderStatus,
+                orderType: Int,
+                side: Int,
+                orderStatus: Int,
                 autoStop: Int // Auto-generated stop order placed this percentage below VWAP.
                               // The stop order is placed after this market order is executed.
                               // "Auto-Stop" Calculation: AP - (AP x autoStop).
-                ) {
-
-  def isNew: Boolean = orderQty == leavesQty && orderStatus == OrderStatus.New
-
-  def isFilled: Boolean = orderQty == cumQty && orderStatus == OrderStatus.Fill
-
-  def isPartiallyFilled: Boolean = cumQty < orderQty && orderStatus == OrderStatus.PartialFill
-
-  def isCancelled: Boolean = leavesQty == 0 && orderStatus == OrderStatus.Cancelled
-
-  def isRejected: Boolean = leavesQty == 0 && orderStatus == OrderStatus.Rejected
-
-}
+                )
 
 object Order {
 
   def createMarketOrd(accountName: String, comment: String, createdByID: String, instrumentId: Long,
-                      orderQty: Long, side: Side, autoStop: Int) = {
-    Order(0L, accountName, 0L, comment, 0.0, createdByID, timeNow, instrumentId, orderQty, orderQty,
-      OrderType.Market, side, OrderStatus.New, autoStop)
+                      orderQty: Long, side: Int, autoStop: Int) = {
+    Order(Some(0L), accountName, 0L, comment, 0.0, createdByID, timeNow, instrumentId, orderQty, orderQty,
+      OrderType.Market.id, side, OrderStatus.New.id, autoStop)
   }
 
-  def fill(order:Order) = ???
-
-  def cancel(order: Order) = ???
+  def createLimitOrd() = ???
 
   val timeNow = DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy hh:mm:ss"))
 }

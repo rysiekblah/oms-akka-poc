@@ -22,6 +22,5 @@ class Publisher extends Actor with ActorLogging with CommonConfig {
       log.info(">> Publish STRING {}", s)
       mediator ! Publish(topicOms, s)
     }
-
   }
 }
