@@ -1,4 +1,4 @@
-package com.kozlowst.oms.common
+package com.kozlowst.oms.common.models
 
 /**
   * Created by tomek on 4/6/17.

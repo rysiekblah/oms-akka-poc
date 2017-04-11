@@ -1,6 +1,6 @@
-package com.kozlowst.oms.common
+package com.kozlowst.oms.common.config
 
-import com.typesafe.config.{Config, ConfigFactory}
+import com.typesafe.config.ConfigFactory
 
 import scala.util.Try
 

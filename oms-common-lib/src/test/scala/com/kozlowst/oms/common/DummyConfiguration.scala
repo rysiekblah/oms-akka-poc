@@ -1,5 +1,7 @@
 package com.kozlowst.oms.common
 
+import com.kozlowst.oms.common.config.CommonConfig
+
 import scala.util.Try
 
 /**

@@ -1,6 +1,6 @@
-package com.kozlowst.oms.common
+package com.kozlowst.oms.common.models
 
-import OrderStatus.OrderStatus
+import com.kozlowst.oms.common.models.OrderStatus.OrderStatus
 
 /**
   * Created by tomek on 4/7/17.

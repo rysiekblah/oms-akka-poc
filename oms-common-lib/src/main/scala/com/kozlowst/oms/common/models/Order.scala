@@ -1,8 +1,5 @@
-package com.kozlowst.oms.common
+package com.kozlowst.oms.common.models
 
-import com.kozlowst.oms.common.OrderStatus.OrderStatus
-import com.kozlowst.oms.common.OrderType.OrderType
-import com.kozlowst.oms.common.Side.Side
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
