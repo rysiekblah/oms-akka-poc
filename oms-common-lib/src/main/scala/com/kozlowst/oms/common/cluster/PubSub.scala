@@ -21,6 +21,7 @@ trait PubSub[T] extends Actor with ActorLogging {
 
   override def receive: Receive = {
     case command: Command[T] => {
+      log.info("PubSub Received {}", command)
       val reqId = CommandUtils.sequenceNumber
       mediator ! Publish(topic, CommandRequest(reqId, command))
       context.become(waitForResponse(reqId))

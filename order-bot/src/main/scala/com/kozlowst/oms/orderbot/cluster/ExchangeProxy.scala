@@ -1,4 +1,4 @@
-package com.kozlowst.oms.orderbot
+package com.kozlowst.oms.orderbot.cluster
 
 import com.kozlowst.oms.common.cluster.Publisher
 import com.kozlowst.oms.common.commands.CommandSync
