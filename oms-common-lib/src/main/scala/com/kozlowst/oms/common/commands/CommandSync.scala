@@ -5,4 +5,4 @@ import akka.remote.ContainerFormats.ActorRef
 /**
   * Created by tomek on 4/10/17.
   */
-case class CommandSync(topic: String, obj: Any, actor: ActorRef)
+case class CommandSync[+T](topic: String, obj: T, actor: ActorRef)

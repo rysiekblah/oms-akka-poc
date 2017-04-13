@@ -18,7 +18,7 @@ trait Subscriber[T] extends Actor with ActorLogging {
   def handle(obj: T)
 
   override def receive: Receive = {
-    case Command(topic, obj:T) => handle(obj)
+    case command: Command[T] => handle(command.obj)
     case SubscribeAck(Subscribe(topic, None, self)) =>
       log.info("Cluster.Subscriber Subscription ACK(topic: {})", topic)
   }

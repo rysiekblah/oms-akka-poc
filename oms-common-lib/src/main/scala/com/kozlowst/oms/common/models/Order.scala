@@ -1,5 +1,6 @@
 package com.kozlowst.oms.common.models
 
+import com.kozlowst.oms.common.utils.DateUtils
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 
@@ -30,13 +31,11 @@ object Order {
 
   def createMarketOrd(accountName: String, comment: String, createdByID: String, instrumentId: Long,
                       orderQty: Long, side: Int, autoStop: Int) = {
-    Order(Some(0L), accountName, 0L, comment, 0.0, createdByID, timeNow, instrumentId, orderQty, orderQty,
+    Order(Some(0L), accountName, 0L, comment, 0.0, createdByID, DateUtils.timeNow, instrumentId, orderQty, orderQty,
       OrderType.Market.id, side, OrderStatus.New.id, autoStop)
   }
 
   def createLimitOrd() = ???
-
-  val timeNow = DateTime.now().toString(DateTimeFormat.forPattern("dd-MM-yyyy hh:mm:ss"))
 }
 
 object OrderType extends Enumeration {

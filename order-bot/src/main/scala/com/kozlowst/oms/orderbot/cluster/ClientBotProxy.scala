@@ -12,8 +12,7 @@ class ClientBotProxy extends OrderBotConfig with PubSub[Order]{
 
   override def topic: String = clientBotTopic
 
-  override def handleResponse(reqId: Long, command: Command[Order]): Unit = {
+  override def handleResponse(reqId: String, command: Command[Order]): Unit = {
 
   }
-
 }

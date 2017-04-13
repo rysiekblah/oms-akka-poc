@@ -17,10 +17,10 @@ trait Publisher[T] extends Actor with ActorLogging {
       log.info("Cluster.Publisher {}", command)
       mediator ! Publish(command.topic, command.obj)
 
-    case command: CommandSync =>
+    case command: CommandSync[T] =>
       log.info("Cluster.Publisher {}", command)
       context.become(handleSync(command))
   }
 
-  def handleSync(commandSync: CommandSync): Receive
+  def handleSync(commandSync: CommandSync[T]): Receive
 }
