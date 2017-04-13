@@ -9,14 +9,14 @@ import com.kozlowst.oms.common.commands.{CommandRequest, CommandResponse}
   */
 
 object RequestHandler {
-  case class Done(response: CommandResponse)
+  case class Done[T](response: CommandResponse[T])
   case class Fail(message:String)
 }
 
-trait RequestHandler {
+trait RequestHandler[T] {
   this: Actor =>
   val log = Logging(context.system, "RequestHandler")
-  case class Job(requester:ActorRef, worker:Props, request: CommandRequest)
+  case class Job(requester:ActorRef, worker:Props, request: CommandRequest[T])
   var requestNum = 0
   def runNext(queue:Vector[Job]):Receive = {
     requestNum+=1

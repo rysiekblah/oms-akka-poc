@@ -7,17 +7,20 @@ import com.kozlowst.oms.common.commands.{Command, CommandSync}
 /**
   * Created by tomek on 4/10/17.
   */
-class Publisher extends Actor with ActorLogging {
+trait Publisher[T] extends Actor with ActorLogging {
 
   import DistributedPubSubMediator.Publish
   val mediator = DistributedPubSub(context.system).mediator
 
   override def receive: Receive = {
-    case Command(topic, obj) =>
-      log.info("Cluster.Publisher COMMAND(topic: {}, obj: {})", topic, obj)
-      mediator ! Publish(topic, obj)
+    case command: Command[T] =>
+      log.info("Cluster.Publisher {}", command)
+      mediator ! Publish(command.topic, command.obj)
 
-    case CommandSync(topic, obj, actorRef) =>
-      log.info("Cluster.Publisher COMMAND-SYNC(topic: {}, obj: {})", topic, obj)
+    case command: CommandSync =>
+      log.info("Cluster.Publisher {}", command)
+      context.become(handleSync(command))
   }
+
+  def handleSync(commandSync: CommandSync): Receive
 }

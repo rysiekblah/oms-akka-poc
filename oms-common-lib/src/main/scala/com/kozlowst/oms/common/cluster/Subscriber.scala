@@ -7,7 +7,9 @@ import com.kozlowst.oms.common.commands.Command
 /**
   * Created by tomek on 4/10/17.
   */
-abstract class Subscriber[T](topic: String) extends Actor with ActorLogging {
+trait Subscriber[T] extends Actor with ActorLogging {
+
+  def topic: String
 
   import DistributedPubSubMediator.{ Subscribe, SubscribeAck }
   val mediator = DistributedPubSub(context.system).mediator
@@ -16,8 +18,8 @@ abstract class Subscriber[T](topic: String) extends Actor with ActorLogging {
   def handle(obj: T)
 
   override def receive: Receive = {
-    case Command(subTopic, obj: T) => handle(obj)
-    case SubscribeAck(Subscribe(subTopic, None, self)) =>
-      log.info("Cluster.Subscriber Subscription ACK(topic: {})", subTopic)
+    case Command(topic, obj:T) => handle(obj)
+    case SubscribeAck(Subscribe(topic, None, self)) =>
+      log.info("Cluster.Subscriber Subscription ACK(topic: {})", topic)
   }
 }

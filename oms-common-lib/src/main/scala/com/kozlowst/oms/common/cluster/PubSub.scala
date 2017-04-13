@@ -10,29 +10,33 @@ import com.kozlowst.oms.common.utils.CommandUtils
   * Created by tomek on 4/11/17.
   */
 
-abstract class PubSub(topic: String) extends Actor with ActorLogging {
+trait PubSub[T] extends Actor with ActorLogging {
+
+  def topic: String
 
   import DistributedPubSubMediator.{ Subscribe, SubscribeAck }
   val mediator = DistributedPubSub(context.system).mediator
+  log.info("Cluster.PubSub SUBSCRIBE for topic: {}", topic)
   mediator ! Subscribe(topic, self)
 
   override def receive: Receive = {
-    case command: Command => {
+    case command: Command[T] => {
       val reqId = CommandUtils.sequenceNumber
       mediator ! Publish(topic, CommandRequest(reqId, command))
       context.become(waitForResponse(reqId))
     }
-    case SubscribeAck(Subscribe(subTopic, None, self)) =>
-      log.info("Cluster.Subscriber Subscription ACK(topic: {})", subTopic)
+    case SubscribeAck(Subscribe(topicPubSub, None, self)) =>
+      log.info("Cluster.PubSub Subscription ACK(topic: {})", topicPubSub)
   }
 
   def waitForResponse(reqId: Long): Receive = {
-    case CommandResponse(id, `reqId`, command) => {
+    case CommandResponse(id, `reqId`, command: Command[T]) => {
+      log.info("Cluster.PubSub Response for Request({}) received.", reqId)
       handleResponse(reqId, command)
       context.stop(self)
     }
   }
 
-  def handleResponse(reqId: Long, command: Command)
+  def handleResponse(reqId: Long, command: Command[T])
 
 }

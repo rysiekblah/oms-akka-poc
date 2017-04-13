@@ -41,20 +41,24 @@ object Order {
 
 object OrderType extends Enumeration {
   type OrderType = Value
-  val Market, Limit, Stop = Value
+  val Market = Value(1)
+  val Limit = Value(2)
+  val Stop = Value(3)
 }
 
 object Side extends Enumeration {
   type Side = Value
-  val Buy, Sell = Value
+  val Buy = Value(1)
+  val Sell = Value(2)
 }
 
 object OrderStatus extends Enumeration {
   type OrderStatus = Value
-  val Failed = Value(-1)
   val New = Value(0)
   val PartialFill = Value(1)
   val Fill = Value(2)
+  val Paused = Value(3)
   val Cancelled = Value(4)
+  val Verified = Value(5)
   val Rejected = Value(8)
 }
