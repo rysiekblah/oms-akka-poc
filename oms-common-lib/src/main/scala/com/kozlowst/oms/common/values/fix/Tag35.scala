@@ -3,7 +3,7 @@ package com.kozlowst.oms.common.values.fix
 /**
   * Created by tomek on 4/23/17.
   */
-object Tag35 {
+object Tag35 extends Enumeration {
 
   /*
   TODO: do it generic, TransFIX engine
@@ -102,5 +102,177 @@ BF	= User Response Added  FIX.4.4		[UserResponse]
 BG	= Collateral Inquiry Ack Added  FIX.4.4		[CollateralInquiryAck]
 BH	= Confirmation Request Added  FIX.4.4		[ConfirmationRequest]
   * */
+
+  type Tag35 = Value
+
+  /**
+    * Heartbeat
+    * Allows the client and the OCG to exercise the communication line during periods of
+    * inactivity and verify that the interfaces at each end are available.
+    * */
+  val Heartbeat = Value("0")
+
+  /**
+    * Test Request
+    * Allows the client or the OCG to request a response from the other party if inactivity is detected.
+    * */
+  val TestRequest = Value("1")
+
+  /**
+    * Resend Request
+    * Allows for the recovery of messages lost during a malfunction of the communications layers.
+    * */
+  val ResendRequest = Value("2")
+
+  /**
+    * Reject
+    * Used to reject a message that does not comply with session level validations.
+    * */
+  val Reject = Value("3")
+
+  /**
+    * Sequence Reset
+    * Allows the client or the OCG to increase the expected incoming sequence number of the other party.
+    * */
+  val SequenceReset = Value("4")
+
+  /**
+    * Logon
+    * Allows the client and the OCG to establish a FIX session.
+    * */
+  val Logon = Value("A")
+
+  /**
+    * Logout
+    * Allows the client and the OCG to terminate a FIX session.
+    * */
+  val Logout = Value("5")
+
+  /**
+    * Business Message Reject
+    * Indicates that an application message could not be processed
+    * */
+  val BusinessMessageReject = Value("j")
+
+  /**
+    * Execution report
+    *
+    * Indicates one of the following:
+    * Order Accepted
+    * Order Rejected
+    * Order Expired
+    * Order Cancelled
+    * Order Replaced
+    * Trade
+    * Trade Cancel
+    * */
+  val ExecutionReport = Value("8")
+
+  /**
+    * Indicates that either a Cancel or Cancel/Replace request has been rejected
+    * */
+  val OrderCancelReject = Value("9")
+
+  /**
+    * Allows the client to submit a new order.
+    * */
+  val NewOrderSingle = Value("D")
+
+  /**
+    * Allows the client to cancel a live order in the execution venue.
+    * */
+  val OrderCancelRequest = Value("F")
+
+  /**
+    * Allows the client to amend specific attributes a live order.
+    * */
+  val OrderCancelReplaceRequest = Value("G")
+
+  /**
+    * Allows the client to mass cancel:
+    * All live orders
+    * All live orders for a particular instrument.
+    * All live orders for a particular market segment.
+    * */
+  val MassCancelRequest = Value("q")
+
+  /**
+    * Indicates one of the following:
+    * Mass cancel request accepted.
+    * Mass cancel request rejected.
+    * */
+  val OrderMassCancelReport = Value("r")
+
+  /**
+    * Allows the client to submit a quote for a single instrument.
+    * */
+  val Quote = Value("S")
+
+  /**
+    * Allows the client to cancel a quote for a particular instrument.
+    * */
+  val QuoteCancel = Value("Z")
+
+  /**
+    * Indicates one of the following:
+    * Quote rejected
+    * Request to cancel a quote rejected
+    * */
+  val QuoteStatusReport = Value("AI")
+
+  /**
+    * Indicates one of the following:
+    * Trade Submit
+    * Trade Cance
+    * */
+  val TradeCaptureReport = Value("AE")
+
+  /**
+    *  Indicates one of the following:
+    * Reject Trade
+    * Reject Trade Cancel
+    * */
+  val TradeCaptureReportAck = Value("AR")
+
+  /**
+    *
+    * Allows the client to cancel a live order in the execution venue on behalf of another user
+    * */
+  val OBOCancelRequest = Value("F")
+
+  /**
+    *
+    * Allows the client to carry out mass cancellations on behalf of another user at the following order levels:
+    * All live orders.
+    * All live orders for a particular instrument.
+    * All live orders for a particular market segment
+    * */
+  val OBOMassCancelRequest = Value("q")
+
+
+  /**
+    *
+    * Allows the client to request for throttle entitlement details
+    * */
+  val UserRequest = Value("BE")
+
+  /**
+    *
+    * Response to the User Request
+    * */
+  val UserResponse = Value("BF")
+
+  /**
+    *
+    * Request entitlement information for Exchange participant
+    * */
+  val PartyEntitlementsRequest = Value("CU")
+
+  /**
+    *
+    * Response to Party Entitlements Request
+    * */
+  val PartyEntitlementsReport = Value("CV")
+
 
 }
