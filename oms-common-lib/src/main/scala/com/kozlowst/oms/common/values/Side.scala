@@ -5,6 +5,7 @@ package com.kozlowst.oms.common.values
   */
 object Side extends Enumeration {
   type Side = Value
-  val BUY = Value(1)
-  val SELL = Value(2)
+  val Buy = Value(1)
+  val Sell = Value(2)
+  val SellShort = Value(5)
 }

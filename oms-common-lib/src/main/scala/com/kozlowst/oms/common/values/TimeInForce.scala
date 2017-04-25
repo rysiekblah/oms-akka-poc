@@ -5,7 +5,7 @@ package com.kozlowst.oms.common.values
   */
 object TimeInForce extends Enumeration {
 
-  type ValidityType = Value
+  type TimeInForce = Value
 
   /*
   * Day
