@@ -6,13 +6,13 @@ package com.kozlowst.oms.common.values
 object OrderStatus extends Enumeration {
   type OrderStatus = Value
 
-  val NEW                = Value('0')
-  val PARTIALLY_FILLED   = Value('1')
-  val FILLED             = Value('2')
-  val CANCELLED          = Value('4')
-  val PENDING_CANCEL     = Value('6')
-  val REJECTED           = Value('8')
-  val PENDING_NEW        = Value('A')
-  val EXPIRED            = Value('C')
-  val PENDING_REPLACE    = Value('E')
+  val New               = Value('0')
+  val PartiallyFilled   = Value('1')
+  val Filled            = Value('2')
+  val Cancelled         = Value('4')
+  val PendingCancel     = Value('6')
+  val Rejected          = Value('8')
+  val PendingNew        = Value('A')
+  val Expired           = Value('C')
+  val PendingReplace    = Value('E')
 }

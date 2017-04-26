@@ -1,6 +1,7 @@
 package com.kozlowst.oms.common.fix.messages
 
 import com.kozlowst.oms.common.fix.values.Tag35
+import com.kozlowst.oms.common.models.Order
 import com.kozlowst.oms.common.values.OrderCapacity.OrderCapacity
 import com.kozlowst.oms.common.values.OrderRestrictions.OrderRestrictions
 import com.kozlowst.oms.common.values.OrderType.OrderType
@@ -11,6 +12,7 @@ import com.kozlowst.oms.common.values.TimeInForce.TimeInForce
   * Created by tomek on 4/24/17.
   */
 case class NewSingleOrder(
+                         msgType:String = Tag35.NewOrderSingle.toString,
                          clOrdID:Long,
                          // Role
                          noPartyIDs:Int,
@@ -38,6 +40,4 @@ case class NewSingleOrder(
                          noDisclosureInstructions:Int,
                          disclosureType:Int,
                          disclosureInstruction:Int
-                         ) {
-  val msgType:String = Tag35.NewOrderSingle
-}
+                         )
