@@ -33,7 +33,7 @@ object Order {
   def createMarketOrd(accountName: String, comment: String, createdByID: String, instrumentId: Long,
                       orderQty: Long, side: Int, autoStop: Int) = {
     Order(Some(0L), accountName, 0L, comment, 0.0, createdByID, DateUtils.timeNow, instrumentId, orderQty, orderQty,
-      OrderType.Market.id, side, OrderStatus.New.id, autoStop)
+      OrderType.MARKET.id, side, OrderStatus.New.id, autoStop)
   }
 
   def createLimitOrd() = ???
